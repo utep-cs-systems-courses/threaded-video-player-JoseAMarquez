@@ -24,7 +24,7 @@ def extractFrames(fileName, inputQueue):
     print(f'Reading frame {count} {success}')
 
     #adding images to the queue
-    while success and count < 72:
+    while success :
         success, jpgImage = cv2.imencode('.jpg', image)
         inputQueue.putFrame(jpgImage)
         success,image = vidcap.read()
@@ -41,7 +41,7 @@ def convertToGray(inputQueue, outputQueue):
     inputFrames = inputQueue.getFrame()
 
     #Takes images from original queue then converrt it into gray then it save it into the new queue
-    while inputFrames is not None and count < 72:
+    while inputFrames is not None :
         print(f'Converting frame {count}')
         inputFrames = np.asarray(bytearray(inputFrames), dtype = np.uint8)
         image = cv2.imdecode(inputFrames, cv2.IMREAD_UNCHANGED)
